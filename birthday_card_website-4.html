@@ -62,7 +62,7 @@ h1{font-size:clamp(30px,8vw,42px);color:var(--deep);margin:12px 0}
   <div class="letter-wrap">
     <div class="topline">MADE WITH A LITTLE LOVE</div>
     <div class="photo-frame" id="photoFrame">
-      <div class="photo-placeholder">Đặt ảnh bạn ấy<br>vào đây nhé ♡</div>
+  <img src="anh.jpg" alt="Ảnh kỷ niệm">
     </div>
     <div class="letter">
       <div style="text-align:center;color:#e6a0bb;font-size:20px">✿　♡　✿</div>
@@ -80,7 +80,7 @@ Chúc mọi điều tốt đẹp sẽ tìm đến cậu. ✨</p>
     <div class="music-row">
       <button class="primary" id="musicButton">♫ Phát một chút nhạc</button>
       <div class="music-note" id="musicStatus">Chạm nút để bật bài hát nhé</div>
-      <audio id="song" loop></audio>
+      <audio id="song" src="nhac.mp3" loop></audio>
     </div>
     <div class="footer">a little page, made just for you ♡</div>
   </div>
@@ -116,7 +116,7 @@ const audio=document.getElementById('song');
 const musicButton=document.getElementById('musicButton');
 const musicStatus=document.getElementById('musicStatus');
 musicButton.addEventListener('click',async()=>{
-  if(!audio.src){musicStatus.textContent='Em hãy thêm file nhạc tên song.mp3 vào cùng thư mục website nhé ♡';return;}
+  if(!audio.src){musicStatus.textContent='♡';return;}
   try{
     if(audio.paused){await audio.play();musicButton.textContent='Ⅱ Tạm dừng nhạc';musicStatus.textContent='Đang phát nhạc ♡';}
     else{audio.pause();musicButton.textContent='♫ Phát một chút nhạc';musicStatus.textContent='Đã tạm dừng';}
