@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0f6">
+<title>A little birthday surprise ♡</title>
+<style>
+:root{--pink:#f4a9c7;--deep:#c45d88;--pale:#fff0f6;--ink:#80556a;--paper:#fffdfb}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:radial-gradient(circle at 15% 15%,#fff 0 2px,transparent 3px),linear-gradient(145deg,#fff8fb,#ffeaf3 55%,#fff7fb);overflow-x:hidden}
+button,input{font:inherit}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.hidden{display:none!important}
+.gate,.letter-wrap{width:min(100%,430px);text-align:center}
+.gate-card{background:#ffffffd9;border:1px solid #f8d3e2;border-radius:28px;padding:30px 24px;box-shadow:0 18px 55px #d98eae26}
+.kicker{font:12px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:#d58aa9}
+h1{font-size:clamp(30px,8vw,42px);color:var(--deep);margin:12px 0}
+.subtitle{font-size:16px;line-height:1.6}
+.date-input{width:100%;margin:20px 0 12px;padding:15px;border:1px solid #efc4d6;border-radius:14px;background:#fffafd;text-align:center;font-size:19px;color:var(--ink);outline:none}
+.date-input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #f4a9c733}
+.primary{border:0;border-radius:999px;background:linear-gradient(135deg,#f5b4ce,#e98eb3);color:white;padding:13px 24px;box-shadow:0 8px 20px #df8eaf40;cursor:pointer}
+.hint{min-height:42px;font:13px/1.5 Arial,sans-serif;color:#bb6c91;margin-top:14px}
+.tiny{font:12px Arial,sans-serif;color:#bd91a5;margin-top:16px}
+.decor{position:fixed;pointer-events:none;opacity:.7;font-size:22px;animation:drift 7s ease-in-out infinite}
+.d1{top:9%;left:8%}.d2{top:17%;right:9%;animation-delay:1s}.d3{bottom:13%;left:10%;animation-delay:2s}.d4{bottom:9%;right:12%;animation-delay:3s}
+@keyframes drift{50%{transform:translateY(-13px) rotate(9deg)}}
+.main{padding:35px 18px 50px}
+.topline{font:12px Arial,sans-serif;letter-spacing:2px;color:#c77b9b;margin-bottom:18px}
+.photo-frame{width:150px;height:150px;margin:0 auto 20px;border:7px solid white;border-radius:50%;overflow:hidden;box-shadow:0 8px 28px #c8789a35;background:#ffe3ef;display:flex;align-items:center;justify-content:center}
+.photo-frame img{width:100%;height:100%;object-fit:cover}
+.photo-placeholder{font:13px Arial,sans-serif;color:#bd7896;padding:10px}
+.letter{position:relative;background:var(--paper);padding:30px 25px 28px;border-radius:5px;box-shadow:0 14px 38px #bd78952b;border:1px solid #f5e2e9;text-align:left;transform:rotate(-.4deg)}
+.letter:before{content:"";position:absolute;inset:9px;border:1px dashed #efc4d5;pointer-events:none}
+.letter h2{text-align:center;color:var(--deep);font-size:27px;margin:5px 0 22px}
+.letter p{position:relative;font-size:16px;line-height:1.85;white-space:pre-line}
+.signature{text-align:right;color:#c06b91;font-style:italic}
+.music-row{text-align:center;margin:22px 0 0}
+.music-note{font:12px Arial,sans-serif;color:#b77b95;margin-top:9px}
+.float-heart{position:fixed;bottom:-30px;z-index:4;pointer-events:none;animation:rise 5s linear forwards}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.footer{font:12px Arial,sans-serif;color:#c18da4;text-align:center;margin-top:25px}
+@media(min-width:600px){.main{padding-top:45px}.letter-wrap{width:min(100%,500px)}}
+</style>
+</head>
+<body>
+<div class="decor d1">♡</div><div class="decor d2">✿</div><div class="decor d3">୨୧</div><div class="decor d4">✧</div>
+
+<section class="screen" id="gate">
+  <div class="gate gate-card">
+    <div class="kicker">a tiny birthday surprise</div>
+    <h1>Chờ một chút nhé ♡</h1>
+    <p class="subtitle">Trước khi mở món quà nhỏ này,<br>cho mình hỏi ngày sinh của người gửi là ngày nào?</p>
+    <input class="date-input" id="birth" type="text" inputmode="numeric" placeholder="Ví dụ: 11/7" maxlength="10" aria-label="Ngày sinh người gửi">
+    <button class="primary" id="unlock">Mở bất ngờ ♡</button>
+    <div class="hint" id="hint" aria-live="polite"></div>
+    <div class="tiny">Một bí mật nho nhỏ đang chờ cậu ✧</div>
+  </div>
+</section>
+
+<section class="screen main hidden" id="home">
+  <div class="letter-wrap">
+    <div class="topline">MADE WITH A LITTLE LOVE</div>
+    <div class="photo-frame" id="photoFrame">
+      <div class="photo-placeholder">Đặt ảnh bạn ấy<br>vào đây nhé ♡</div>
+    </div>
+    <div class="letter">
+      <div style="text-align:center;color:#e6a0bb;font-size:20px">✿　♡　✿</div>
+      <h2>Happy Birthday!</h2>
+      <p id="letterText">Chúc mừng sinh nhật cậu! ♡
+
+Mong tuổi mới sẽ mang đến cho cậu thật nhiều niềm vui, những điều bất ngờ dễ thương và thật nhiều khoảnh khắc đáng nhớ.
+
+Cảm ơn vì đã xuất hiện và làm cho thế giới này thêm vui một chút. Hãy luôn là chính mình, cười thật nhiều và có một ngày sinh nhật thật tuyệt nhé!
+
+Chúc mọi điều tốt đẹp sẽ tìm đến cậu. ✨</p>
+      <p class="signature">From someone who wishes you well ♡</p>
+      <div style="text-align:center;color:#e6a0bb;font-size:20px">୨୧　✧　୨୧</div>
+    </div>
+    <div class="music-row">
+      <button class="primary" id="musicButton">♫ Phát một chút nhạc</button>
+      <div class="music-note" id="musicStatus">Chạm nút để bật bài hát nhé</div>
+      <audio id="song" loop></audio>
+    </div>
+    <div class="footer">a little page, made just for you ♡</div>
+  </div>
+</section>
+<script>
+const gate=document.getElementById('gate');
+const home=document.getElementById('home');
+const input=document.getElementById('birth');
+const hint=document.getElementById('hint');
+function normalizeDate(value){return value.trim().replace(/[.\-\s]/g,'/').replace(/\/+/g,'/').replace(/^0(?=\d\/)/,'');}
+function openGift(){
+  const answer=normalizeDate(input.value);
+  if(answer==='11/7'||answer==='11/07'){
+    gate.classList.add('hidden');home.classList.remove('hidden');
+    setInterval(makeHeart,850);
+  }else if(!answer){
+    hint.textContent='Nhập thử ngày sinh nhé, gợi ý là định dạng ngày/tháng ♡';
+  }else{
+    hint.textContent='Chưa đúng mất rồi! Gợi ý: ngày sinh có ngày là 11 và tháng là 7 nè ✿';
+    input.select();
+  }
+}
+document.getElementById('unlock').addEventListener('click',openGift);
+input.addEventListener('keydown',e=>{if(e.key==='Enter')openGift()});
+function makeHeart(){
+  const el=document.createElement('span');el.className='float-heart';
+  el.textContent=['♡','✿','♥','✧'][Math.floor(Math.random()*4)];
+  el.style.left=Math.random()*95+'vw';el.style.fontSize=(14+Math.random()*15)+'px';
+  el.style.color=['#e99cbb','#f2b7cd','#d98bac'][Math.floor(Math.random()*3)];
+  document.body.appendChild(el);setTimeout(()=>el.remove(),5100);
+}
+const audio=document.getElementById('song');
+const musicButton=document.getElementById('musicButton');
+const musicStatus=document.getElementById('musicStatus');
+musicButton.addEventListener('click',async()=>{
+  if(!audio.src){musicStatus.textContent='Em hãy thêm file nhạc tên song.mp3 vào cùng thư mục website nhé ♡';return;}
+  try{
+    if(audio.paused){await audio.play();musicButton.textContent='Ⅱ Tạm dừng nhạc';musicStatus.textContent='Đang phát nhạc ♡';}
+    else{audio.pause();musicButton.textContent='♫ Phát một chút nhạc';musicStatus.textContent='Đã tạm dừng';}
+  }catch(e){musicStatus.textContent='Chưa phát được nhạc. Thử chạm lại nhé!';}
+});
+</script>
+</body>
+</html>
